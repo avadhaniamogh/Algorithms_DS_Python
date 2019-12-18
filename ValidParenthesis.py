@@ -18,6 +18,32 @@ def valid_parenthesis(str):
                 return False
     return len(stack) == 0
 
+def valid_parenthesis_count(str):
+    count1 = 0
+    count2 = 0
+    count3 = 0
+    for c in str:
+        if c == '(':
+            count1 += 1
+        if c == '{':
+            count2 += 1
+        if c == '[':
+            count3 += 1
+        if c == ')':
+            if count1 == 0: return False
+            count1 -= 1
+        if c == '}':
+            if count2 == 0: return False
+            count2 -= 1
+        if c == ']':
+            if count3 == 0: return False
+            count3 -= 1
 
-str = "{}[]as"
-print valid_parenthesis(str)
+    print count1, count2, count3
+    return count1 == 0 and count2 == 0 and count3 == 0
+
+
+
+
+str = "[{{}}]"
+print valid_parenthesis_count(str)
